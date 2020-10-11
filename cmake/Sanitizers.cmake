@@ -10,18 +10,20 @@ function(enable_sanitizers project_name)
 
     set(SANITIZERS "")
 
+    option(ENABLE_SANITIZERS "Enable address UB and leak sanitizers" FALSE)
+
     option(ENABLE_SANITIZER_ADDRESS "Enable address sanitizer" FALSE)
-    if(ENABLE_SANITIZER_ADDRESS)
+    if(ENABLE_SANITIZER_ADDRESS OR ENABLE_SANITIZERS)
       list(APPEND SANITIZERS "address")
     endif()
 
     option(ENABLE_SANITIZER_LEAK "Enable leak sanitizer" FALSE)
-    if(ENABLE_SANITIZER_LEAK)
+    if(ENABLE_SANITIZER_LEAK OR ENABLE_SANITIZERS)
       list(APPEND SANITIZERS "leak")
     endif()
 
     option(ENABLE_SANITIZER_UNDEFINED_BEHAVIOR "Enable undefined behavior sanitizer" FALSE)
-    if(ENABLE_SANITIZER_UNDEFINED_BEHAVIOR)
+    if(ENABLE_SANITIZER_UNDEFINED_BEHAVIOR OR ENABLE_SANITIZERS)
       list(APPEND SANITIZERS "undefined")
     endif()
 
